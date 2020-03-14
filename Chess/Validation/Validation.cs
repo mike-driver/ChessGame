@@ -7,9 +7,7 @@ namespace Chess
 {
     public partial class Validation
     {
-        //public StringBuilder PiecesTaken = new StringBuilder();
-        //public static List<String> AllMoves = new List<string>();
-        public int[] XY_SRC_DST;
+        //public int[] XY_SRC_DST;
         public static StringBuilder Message = new StringBuilder();
         
         public bool IsPieceMoveValid(ChessGame game, string move)
@@ -88,7 +86,7 @@ namespace Chess
                 //NOW WE CAN GET THE src AND dst parts safely...
                 var src = move.Substring(0, 2);
                 var dst = move.Substring(2, 2);
-                XY_SRC_DST = GetXYs(move);                     //e.g. 4,2,4,4 .... ints !!! NOT USED ???
+                //XY_SRC_DST = GetXYs(move);                     //e.g. 4,2,4,4 .... ints !!! NOT USED ???
                 //do some more fundamental checks !!!
                 //make sure the source square is not a blank one !!!
                 if (GetVal(game.Board, src) == "  ")
