@@ -1,6 +1,5 @@
-﻿using Chess.Common;
+﻿
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Chess
@@ -13,6 +12,10 @@ namespace Chess
 
         public static void Main(string[] args)
         {
+            //testing method
+            TestThis();
+            //
+
             string LowerCaseMove;
             Validation validate = new Validation();
 
@@ -41,6 +44,17 @@ namespace Chess
                     Message.Append("Invalid move :" + LowerCaseMove + " ");
                 }
             }
+        }
+
+        private static void TestThis()
+        {
+            var intBoard = new BoardInternal();
+            DisplayBoard(intBoard);
+        }
+
+        private static void DisplayBoard(BoardInternal intBoard)
+        {
+            
         }
 
         private static void CommandMove(ChessGame game, string move)
