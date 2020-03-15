@@ -11,7 +11,7 @@
     //pieces
     public enum P
     {
-        ES,
+        __,
         WP,
         WR,
         WN,
