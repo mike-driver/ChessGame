@@ -65,9 +65,8 @@ namespace Chess
 
         private static void ChessMove(ChessGame game, string move, Validation validate)
         {
-            if (validate.IsPieceMoveValid(game, move) &&
-                            validate.IsClearPath(game, move) &&
-                            validate.DoesMovePutSelfInCheck(move))
+            if (validate.IsPieceMoveValid(game, move) 
+                && validate.IsClearPath(game, move) && validate.DoesMovePutSelfInCheck(move))
             {
                 if (validate.StorePieceMovePiece(game, move))
                 {
