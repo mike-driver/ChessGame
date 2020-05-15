@@ -1,23 +1,24 @@
-﻿using Chess.Common;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Text;
+using Chess.Testing;
 
 namespace Chess
 {
     public class Game
     {
         public static StringBuilder Message = new StringBuilder();
-
         private static bool PLAYING = true;
 
         public static void Main(string[] args)
         {
+            //testing method
+            Test1.TestThis();
+            //
+
             string LowerCaseMove;
             Validation validate = new Validation();
 
             ChessGame Game1 = new ChessGame();
-            ChessGame Game2 = new ChessGame();
 
             while (PLAYING)
             {
@@ -64,9 +65,8 @@ namespace Chess
 
         private static void ChessMove(ChessGame game, string move, Validation validate)
         {
-            if (validate.IsPieceMoveValid(game, move) &&
-                            validate.IsClearPath(game, move) &&
-                            validate.DoesMovePutSelfInCheck(move))
+            if (validate.IsPieceMoveValid(game, move) 
+                && validate.IsClearPath(game, move) && validate.DoesMovePutSelfInCheck(move))
             {
                 if (validate.StorePieceMovePiece(game, move))
                 {
@@ -90,5 +90,3 @@ namespace Chess
         }
     }
 }
-
-

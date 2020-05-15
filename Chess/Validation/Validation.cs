@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -12,6 +11,7 @@ namespace Chess
         
         public bool IsPieceMoveValid(ChessGame game, string move)
         {
+            //If castling
             if ((move == "0") || (move == "00"))
             {
                 if (IsCastlingValid(game, move))
@@ -29,6 +29,23 @@ namespace Chess
             int ysrc = (int)Convert.ToChar(src.Substring(1, 1));
             int xdst = (int)Convert.ToChar(dst.Substring(0, 1));
             int ydst = (int)Convert.ToChar(dst.Substring(1, 1));
+
+            //blacks turn?
+            if (" r n b q k p".Contains(srcval))
+            {
+                if (game.Moves.Count % 2 == 0)
+                {
+                    return false;
+                }
+            }
+            //whites turn?
+            if (" R N B Q K P".Contains(srcval))
+            {
+                if (game.Moves.Count % 2 != 0)
+                {
+                    return false;
+                }
+            }
 
             switch (srcval)
             {
