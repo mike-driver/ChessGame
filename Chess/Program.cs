@@ -19,6 +19,8 @@ namespace Chess
             Validation validate = new Validation();
 
             ChessGame Game1 = new ChessGame();
+            ChessGame Test = new ChessGame();
+            WriteBoard(Test);
 
             while (PLAYING)
             {
