@@ -32,10 +32,12 @@ namespace Chess
                     if (LowerCaseMove == "q" || LowerCaseMove == "r" || LowerCaseMove == "s")
                     {
                         CommandMove(Game1, LowerCaseMove);
+                        CommandMove2(Game2, LowerCaseMove);
                     }
                     else
                     {
                         ChessMove(Game1, LowerCaseMove, validate);
+                        ChessMove2(Game2, LowerCaseMove, validate);
                     }
                 }
                 else
@@ -46,6 +48,25 @@ namespace Chess
         }
 
         private static void CommandMove(ChessGame game, string move)
+        {
+            if (move.StartsWith("q"))   //quit the game
+            {
+                PLAYING = false;
+            }
+            else if (move.StartsWith("r"))  //reset
+            {
+                game.FLIPPED = false;
+                game.Board = game.InitialiseGame();
+                game.Moves.Clear();
+                game.PiecesTaken.Clear();
+            }
+            else if (move.StartsWith("s"))      //switch the board around (flip)
+            {
+                game.FLIPPED = !game.FLIPPED;
+            }
+        }
+
+        private static void CommandMove2(BoardInternal game, string move)
         {
             if (move.StartsWith("q"))   //quit the game
             {
@@ -79,6 +100,23 @@ namespace Chess
             {
                 Message.Append("Invalid move :" + move + " ");
             }
+        }
+
+        private static void ChessMove2(BoardInternal game, string move, Validation validate)
+        {
+            //if (validate.IsPieceMoveValid(game, move)
+            //    && validate.IsClearPath(game, move)
+            //    && validate.DoesMovePutSelfInCheck(move))
+            //{
+            //    if (validate.StorePieceMovePiece(game, move))
+            //    {
+            //        game.Moves.Add(move);
+            //    }
+            //}
+            //else
+            //{
+            //    Message.Append("Invalid move :" + move + " ");
+            //}
         }
 
         private static void WriteBoard(ChessGame game)
