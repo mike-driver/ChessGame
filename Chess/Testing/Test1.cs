@@ -7,6 +7,7 @@ namespace Chess.Testing
         public static void TestThis()
         {
             var intBoard = new BoardInternal();
+            intBoard.InitialiseGame();
             DisplayBoard(intBoard);
         }
 
