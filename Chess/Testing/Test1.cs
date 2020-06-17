@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Chess.Common;
 
 namespace Chess.Testing
 {
@@ -9,6 +11,35 @@ namespace Chess.Testing
             var intBoard = new BoardInternal();
             intBoard.InitialiseGame();
             DisplayBoard(intBoard);
+
+            
+        }
+
+        
+
+        private static string GetPiece(P ps)
+        {
+            IDictionary<P, string> dict = new Dictionary<P, string>
+            {
+                { P.BB, " b" },
+                { P.BK, " k" },
+                { P.BN, " n" },
+                { P.BP, " p" },
+                { P.BQ, " q" },
+                { P.BR, " r" },
+                { P.WB, " B" },
+                { P.WK, " K" },
+                { P.WN, " N" },
+                { P.WP, " P" },
+                { P.WQ, " Q" },
+                { P.WR, " R" },
+                { P.__, "  " }
+            };
+
+            //string piece = " ";
+            dict.TryGetValue(ps, out string piece);
+
+            return piece;
         }
 
         private static void DisplayBoard(BoardInternal intBoard)
@@ -27,9 +58,9 @@ namespace Chess.Testing
                 for (int F = 0; F < 8; F++)
                 {
                     if (!intBoard.FLIPPED)
-                    { Console.Write("║" + intBoard.Board[R, F]); }
+                    { Console.Write("║" + GetPiece(intBoard.Board[R, F])); }
                     else
-                    { Console.Write("║" + intBoard.Board[7 - R, 7 - F]); }
+                    { Console.Write("║" + GetPiece(intBoard.Board[7 - R, 7 - F])); }
                     if (F == 7)
                     {
                         if (!intBoard.FLIPPED)
@@ -49,5 +80,11 @@ namespace Chess.Testing
             { Console.WriteLine(" h  g  f  e  d  c  b  a    Pieces taken: " + intBoard.PiecesTaken); }
             Console.WriteLine();
         }
+
+        
+        
+        
+
+
     }
 }
