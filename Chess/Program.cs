@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text;
-using Chess.Testing;
 
 namespace Chess
 {
@@ -11,21 +10,21 @@ namespace Chess
 
         public static void Main()
         {
-            //testing method
-            Test1.TestThis();
-            //
-
             string LowerCaseMove;
             Validation validate = new Validation();
 
             ChessGame Game1 = new ChessGame();
-            ChessGame Test = new ChessGame();
-            WriteBoard(Test);
+
+            BoardInternal Game2 = new BoardInternal();
+            
 
             while (PLAYING)
             {
+                CommonUtils.DisplayBoard(Game2);
+
                 WriteBoard(Game1);
                 Message.Clear();
+                
                 LowerCaseMove = Console.ReadLine().ToLower();
                 
                 if (validate.IsFormatValid(LowerCaseMove))
@@ -68,7 +67,8 @@ namespace Chess
         private static void ChessMove(ChessGame game, string move, Validation validate)
         {
             if (validate.IsPieceMoveValid(game, move) 
-                && validate.IsClearPath(game, move) && validate.DoesMovePutSelfInCheck(move))
+                && validate.IsClearPath(game, move) 
+                && validate.DoesMovePutSelfInCheck(move))
             {
                 if (validate.StorePieceMovePiece(game, move))
                 {
