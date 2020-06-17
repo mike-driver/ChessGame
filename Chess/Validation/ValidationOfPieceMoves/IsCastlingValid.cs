@@ -6,7 +6,7 @@ namespace Chess
     {
         public bool IsCastlingValid(ChessGame game, string move)
         {
-            if (!IsEmptySquareInBetween(game, move))
+            if (!IsEmptySquaresInBetween(game, move))
             {
                 return false;
             }

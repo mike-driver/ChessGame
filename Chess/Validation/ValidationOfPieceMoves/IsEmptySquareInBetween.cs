@@ -2,8 +2,10 @@
 {
     partial class Validation
     {
-        public bool IsEmptySquareInBetween(ChessGame game, string move)
+        public bool IsEmptySquaresInBetween(ChessGame game, string move)
         {
+            var test = 0;
+
             //make sure there are empty squares in between on the relevent side
             if (game.Moves.Count % 2 == 0)
             {
