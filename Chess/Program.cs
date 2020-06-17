@@ -9,7 +9,7 @@ namespace Chess
         public static StringBuilder Message = new StringBuilder();
         private static bool PLAYING = true;
 
-        public static void Main(string[] args)
+        public static void Main()
         {
             //testing method
             Test1.TestThis();
