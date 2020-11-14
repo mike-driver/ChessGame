@@ -15,7 +15,7 @@ namespace NUnitTestChess
         {
             Validation val = new Validation();
             var result = val.IsMovingLikeARook(0, 0, 0, 6);
-            Assert.AreEqual(result, true);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -23,7 +23,7 @@ namespace NUnitTestChess
         {
             Validation val = new Validation();
             var result = val.IsMovingLikeARook(7, 7, 0, 7);
-            Assert.AreEqual(result, true);
+            Assert.IsTrue(result);
         }
 
         [Test]

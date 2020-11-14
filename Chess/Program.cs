@@ -89,7 +89,7 @@ namespace Chess
         {
             if (validate.IsPieceMoveValid(game, move) 
                 && validate.IsClearPath(game, move) 
-                && validate.DoesMovePutSelfInCheck(move))
+                && !validate.DoesMovePutSelfInCheck(move))
             {
                 if (validate.StorePieceMovePiece(game, move))
                 {
