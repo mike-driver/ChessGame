@@ -1,12 +1,12 @@
-# Chess1
-My basic chess project
+# ChessGame
+Basic chess project
 Doing the backend basics - so you can take it in turn to make valid moves
 No UI yet
 No automatic responses yet
 
 GIT help:
-git clone https://github.com/mike-driver/Chess.git [to get a new git project]
-git fetch https://github.com/mike-driver/Chess.git
+git clone https://github.com/mike-driver/ChessGame.git [to get a new git project]
+git fetch https://github.com/mike-driver/ChessGame.git
 git status
 git branch .... to see branches
 git branch -d branch-name ... to delete local branch
