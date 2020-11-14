@@ -148,18 +148,6 @@ namespace Chess
             return board[GetRank(pos), GetFile(pos)];
         }
 
-        //private int[] GetXYs(string move)
-        //{
-        //    int[] retval = { 0, 0, 0, 0 };
-        //    var src = move.Substring(0, 2);
-        //    var dst = move.Substring(2, 2);
-        //    retval[0] = GetFile(src);
-        //    retval[1] = GetRank(src);
-        //    retval[2] = GetFile(dst);
-        //    retval[3] = GetRank(dst);
-        //    return retval;
-        //}
-
         private static int GetFile(string pos)
         {
             //'a' ... 'h' ----->  1 ..... 8
