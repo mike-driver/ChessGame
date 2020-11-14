@@ -1,18 +1,43 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
-
 using Chess.Common;
+using Chess.Model;
 
 namespace Chess
 {
     public partial class Validation
     {
-        //public int[] XY_SRC_DST;
         public static StringBuilder Message = new StringBuilder();
+
+        public bool IsWhiteOrBlackToMove(ChessGame game, string move)
+        {
+            MoveModel mm = GetMoveCoordsAndPiece(game, move);
+
+            //blacks turn?
+            if (" r n b q k p".Contains(mm.srcval))
+            {
+                if (game.Moves.Count % 2 == 0)
+                {
+                    return false;
+                }
+            }
+            //whites turn?
+            if (" R N B Q K P".Contains(mm.srcval))
+            {
+                if (game.Moves.Count % 2 != 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         public bool IsPieceMoveValid(ChessGame game, string move)
         {
+            MoveModel mm = GetMoveCoordsAndPiece(game, move);
+
             //If castling
             if ((move == "0") || (move == "00"))
             {
@@ -23,71 +48,45 @@ namespace Chess
                 return false;
             }
 
-            var src = move.Substring(0, 2);
-            var srcval = (GetVal(game.Board, src));
-            var dst = move.Substring(2, 2);
-            string dstval = (GetVal(game.Board, dst));
-            int xsrc = (int)Convert.ToChar(src.Substring(0, 1));
-            int ysrc = (int)Convert.ToChar(src.Substring(1, 1));
-            int xdst = (int)Convert.ToChar(dst.Substring(0, 1));
-            int ydst = (int)Convert.ToChar(dst.Substring(1, 1));
-
-            //blacks turn?
-            if (" r n b q k p".Contains(srcval))
-            {
-                if (game.Moves.Count % 2 == 0)
-                {
-                    return false;
-                }
-            }
-            //whites turn?
-            if (" R N B Q K P".Contains(srcval))
-            {
-                if (game.Moves.Count % 2 != 0)
-                {
-                    return false;
-                }
-            }
-
-            switch (srcval)
+            switch (mm.srcval)
             {
                 case " r":
                 case " R":
-                    if (!IsMovingLikeARook(xsrc, ysrc, xdst, ydst))
+                    if (!IsMovingLikeARook(mm.xsrc, mm.ysrc, mm.xdst, mm.ydst))
                         return false;
                     break;
 
                 case " n":
                 case " N":
-                    if (!IsMovingLikeAKnight(xsrc, ysrc, xdst, ydst))
+                    if (!IsMovingLikeAKnight(mm.xsrc, mm.ysrc, mm.xdst, mm.ydst))
                         return false;
                     break;
 
                 case " b":
                 case " B":
-                    if (!IsMovingLikeABishop(xsrc, ysrc, xdst, ydst))
+                    if (!IsMovingLikeABishop(mm.xsrc, mm.ysrc, mm.xdst, mm.ydst))
                         return false;
                     break;
 
                 case " q":
                 case " Q":
-                    if (!IsMovingLikeAQueen(xsrc, ysrc, xdst, ydst))
+                    if (!IsMovingLikeAQueen(mm.xsrc, mm.ysrc, mm.xdst, mm.ydst))
                         return false;
                     break;
 
                 case " k":
                 case " K":
-                    if (!IsMovingLikeAKing(xsrc, ysrc, xdst, ydst))
+                    if (!IsMovingLikeAKing(mm.xsrc, mm.ysrc, mm.xdst, mm.ydst))
                         return false;
                     break;
 
                 case " p":
-                    if (!IsMovingLikeABlackPawn(dstval, xsrc, ysrc, xdst, ydst))
+                    if (!IsMovingLikeABlackPawn(mm.dstval, mm.xsrc, mm.ysrc, mm.xdst, mm.ydst))
                         return false;
                     break;
 
                 case " P":
-                    if (!IsMovingLikeAWhitePawn(dstval, xsrc, ysrc, xdst, ydst))
+                    if (!IsMovingLikeAWhitePawn(mm.dstval, mm.xsrc, mm.ysrc, mm.xdst, mm.ydst))
                         return false;
                     break;
 
@@ -95,6 +94,22 @@ namespace Chess
                     break;
             }
             return true;
+        }
+
+        public MoveModel GetMoveCoordsAndPiece(ChessGame game, string move)
+        {
+            MoveModel mm = new MoveModel();
+            var src = move.Substring(0, 2);
+            var dst = move.Substring(2, 2);
+
+            mm.xsrc = (int)Convert.ToChar(src.Substring(0, 1));
+            mm.ysrc = (int)Convert.ToChar(src.Substring(1, 1));
+            mm.xdst = (int)Convert.ToChar(dst.Substring(0, 1));
+            mm.ydst = (int)Convert.ToChar(dst.Substring(1, 1));
+
+            mm.srcval = (GetVal(game.Board, src));
+            mm.dstval = (GetVal(game.Board, dst));
+            return mm;
         }
 
         public bool IsValidMove(ChessGame game, string move)
