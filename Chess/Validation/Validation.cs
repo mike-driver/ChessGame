@@ -2,13 +2,15 @@
 using System.Linq;
 using System.Text;
 
+using Chess.Common;
+
 namespace Chess
 {
     public partial class Validation
     {
         //public int[] XY_SRC_DST;
         public static StringBuilder Message = new StringBuilder();
-        
+
         public bool IsPieceMoveValid(ChessGame game, string move)
         {
             //If castling
@@ -54,34 +56,41 @@ namespace Chess
                     if (!IsMovingLikeARook(xsrc, ysrc, xdst, ydst))
                         return false;
                     break;
+
                 case " n":
                 case " N":
                     if (!IsMovingLikeAKnight(xsrc, ysrc, xdst, ydst))
                         return false;
                     break;
+
                 case " b":
                 case " B":
                     if (!IsMovingLikeABishop(xsrc, ysrc, xdst, ydst))
                         return false;
                     break;
+
                 case " q":
                 case " Q":
                     if (!IsMovingLikeAQueen(xsrc, ysrc, xdst, ydst))
                         return false;
                     break;
+
                 case " k":
                 case " K":
                     if (!IsMovingLikeAKing(xsrc, ysrc, xdst, ydst))
                         return false;
                     break;
+
                 case " p":
                     if (!IsMovingLikeABlackPawn(dstval, xsrc, ysrc, xdst, ydst))
                         return false;
                     break;
+
                 case " P":
                     if (!IsMovingLikeAWhitePawn(dstval, xsrc, ysrc, xdst, ydst))
                         return false;
                     break;
+
                 default:
                     break;
             }
@@ -97,7 +106,6 @@ namespace Chess
                     return true;
                 }
             }
-
             else
             {
                 //NOW WE CAN GET THE src AND dst parts safely...
@@ -122,8 +130,8 @@ namespace Chess
                     return false;
                 }
                 //make sure move is not taking own piece
-                if ((" R N B Q K P".Contains(GetVal(game.Board, src))) && (" R N B Q K P".Contains(GetVal(game.Board, dst))) 
-                    || 
+                if ((" R N B Q K P".Contains(GetVal(game.Board, src))) && (" R N B Q K P".Contains(GetVal(game.Board, dst)))
+                    ||
                     (" r n b q k p".Contains(GetVal(game.Board, src))) && (" r n b q k p".Contains(GetVal(game.Board, dst))))
                 {
                     return false;
@@ -187,26 +195,32 @@ namespace Chess
                     case " R":
                         Message.Append("Takes CASTLE");
                         break;
+
                     case " n":
                     case " N":
                         Message.Append("Takes KNIGHT");
                         break;
+
                     case " b":
                     case " B":
                         Message.Append("Takes BISHOP");
                         break;
+
                     case " q":
                     case " Q":
                         Message.Append("Takes QUEEN");
                         break;
+
                     case " k":
                     case " K":
                         Message.Append("Takes KING");
                         break;
+
                     case " p":
                     case " P":
                         Message.Append("Takes PAWN");
                         break;
+
                     default:
                         Message.Append("Takes " + dstval);
                         break;
@@ -217,6 +231,17 @@ namespace Chess
                 Message.Clear();
             }
             return true;
+        }
+
+        //new methods:
+        public P PieceOnSquare(P[,] internalboard, int x, int y)
+        {
+            return internalboard[x, y];
+        }
+
+        public P PieceOnSquare(P[,] internalboard, string pos)
+        {
+            return internalboard[GetRank(pos), GetFile(pos)];
         }
     }
 }

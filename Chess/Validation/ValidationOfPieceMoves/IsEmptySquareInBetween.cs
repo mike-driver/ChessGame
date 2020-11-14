@@ -4,15 +4,13 @@
     {
         public bool IsEmptySquaresInBetween(ChessGame game, string move)
         {
-            var test = 0;
-
             //make sure there are empty squares in between on the relevent side
             if (game.Moves.Count % 2 == 0)
             {
                 //white moving
                 if (move == "0")                            //king side castle
                 {
-                    if ((game.Board[7, 5] != "  ") || (game.Board[7, 6] != "  ")) 
+                    if ((game.Board[7, 5] != "  ") || (game.Board[7, 6] != "  "))
                         return false;
                 }
                 else                                        //must be queen side castle - 00

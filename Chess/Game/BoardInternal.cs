@@ -1,5 +1,6 @@
-﻿using Chess.Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using Chess.Common;
 
 namespace Chess
 {

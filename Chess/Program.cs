@@ -16,7 +16,6 @@ namespace Chess
             ChessGame Game1 = new ChessGame();
 
             BoardInternal Game2 = new BoardInternal();
-            
 
             while (PLAYING)
             {
@@ -24,9 +23,9 @@ namespace Chess
 
                 WriteBoard(Game1);
                 Message.Clear();
-                
+
                 LowerCaseMove = Console.ReadLine().ToLower();
-                
+
                 if (validate.IsFormatValid(LowerCaseMove))
                 {
                     if (LowerCaseMove == "q" || LowerCaseMove == "r" || LowerCaseMove == "s")
@@ -36,7 +35,7 @@ namespace Chess
                     }
                     else
                     {
-                        ChessMove(Game1, LowerCaseMove, validate);
+                        ChessMove(Game1, Game2, LowerCaseMove, validate);
                         ChessMove2(Game2, LowerCaseMove, validate);
                     }
                 }
@@ -85,10 +84,10 @@ namespace Chess
             }
         }
 
-        private static void ChessMove(ChessGame game, string move, Validation validate)
+        private static void ChessMove(ChessGame game, BoardInternal game2, string move, Validation validate)
         {
-            if (validate.IsPieceMoveValid(game, move) 
-                && validate.IsClearPath(game, move) 
+            if (validate.IsPieceMoveValid(game, move)
+                && validate.IsClearPath(game, game2, move)
                 && !validate.DoesMovePutSelfInCheck(move))
             {
                 if (validate.StorePieceMovePiece(game, move))
