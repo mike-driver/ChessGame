@@ -70,7 +70,7 @@ namespace Chess
 
             //diagonal ? if the absolute difference between the source rank and the destination rank is the same
             //           as the file source and destination difference then it is diagonal movement
-            int j = 0;
+            int j;
             if (Math.Abs(srank - drank) == Math.Abs(sfile - dfile)) //this means it is diagonal movement
             {
                 if (srank < drank)          //moving down the board (from the black side to the white side - source rank < destination rank)

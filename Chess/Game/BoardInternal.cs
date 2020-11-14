@@ -18,7 +18,7 @@ namespace Chess
             GAMESTATE = GameState.OK;
         }
 
-        private P[,] InitialiseGame()
+        public P[,] InitialiseGame()
         {
             P[,] board = new P[8, 8]              // these are the memory coordnates..
             {
