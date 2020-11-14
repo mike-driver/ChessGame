@@ -26,7 +26,6 @@ namespace Chess
                         if (src == "h1")                    //castle on king side has already moved
                             return false;
                     }
-
                     else                                        //must be queen side castle - 00
                     {
                         if (src == "a1")                    //castle on queen side has already moved
@@ -48,7 +47,6 @@ namespace Chess
                         if (src == "h8")                    //castle on king side has already moved
                             return false;
                     }
-
                     else                                        //must be queen side castle - 00
                     {
                         if (src == "a8")                    //castle on queen side has already moved

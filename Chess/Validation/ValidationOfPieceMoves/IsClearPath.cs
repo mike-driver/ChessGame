@@ -4,7 +4,7 @@ namespace Chess
 {
     partial class Validation
     {
-        public bool IsClearPath(ChessGame game, string move) //is the path clear?
+        public bool IsClearPath(ChessGame game, BoardInternal game2, string move) //is the path clear?
         {
             var src = move.Substring(0, 2);
             var dst = move.Substring(2, 2);

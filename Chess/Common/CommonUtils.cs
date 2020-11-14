@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+
 using Chess.Common;
 
 namespace Chess
@@ -61,7 +62,6 @@ namespace Chess
 
         public static void DisplayBoard(BoardInternal intBoard)
         {
-
             if (intBoard.Moves.Count % 2 == 0)   //then its even or zero
             {
                 Console.WriteLine("╔══╦══╦══╦══╦══╦══╦══╦══╗  WHITE to move...");
