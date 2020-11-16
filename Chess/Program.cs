@@ -28,7 +28,7 @@ namespace Chess
 
                 if (validate.IsFormatValid(LowerCaseMove))
                 {
-                    if (LowerCaseMove == "q" || LowerCaseMove == "r" || LowerCaseMove == "s")
+                    if (LowerCaseMove == "r" || LowerCaseMove == "f" || LowerCaseMove == "s" || LowerCaseMove == "q")
                     {
                         CommandMove(Game1, LowerCaseMove);
                         CommandMove2(Game2, LowerCaseMove);
@@ -59,9 +59,13 @@ namespace Chess
                 game.Moves.Clear();
                 game.PiecesTaken.Clear();
             }
-            else if (move.StartsWith("s"))      //switch the board around (flip)
+            else if (move.StartsWith("f"))      //flip the board over
             {
                 game.FLIPPED = !game.FLIPPED;
+            }
+            else if (move.StartsWith("s"))      //save
+            {
+                // save the game - TODO
             }
         }
 
@@ -78,9 +82,13 @@ namespace Chess
                 game.Moves.Clear();
                 game.PiecesTaken.Clear();
             }
-            else if (move.StartsWith("s"))      //switch the board around (flip)
+            else if (move.StartsWith("f"))      //flip the board over
             {
                 game.FLIPPED = !game.FLIPPED;
+            }
+            else if (move.StartsWith("s"))      //save
+            {
+                // save the game - TODO
             }
         }
 
