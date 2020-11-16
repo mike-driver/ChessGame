@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Text;
+
 using Chess.Common;
 using Chess.Model;
 
@@ -202,7 +203,8 @@ namespace Chess
             //store the taken piece
             if (dstval != "  ")
             {
-                game.PiecesTaken.Append(dstval.Substring(1, 1) + ":");
+                game.PiecesTaken.Add(dstval.Substring(1, 1) + ":");                 //is this used - TODO
+                game.StringOfPiecesTaken.Append(dstval.Substring(1, 1) + ":");
                 Message.Clear();
                 switch (dstval)
                 {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 
+using Chess.Model;
+
 namespace Chess
 {
     public class Game
@@ -20,7 +22,6 @@ namespace Chess
             while (PLAYING)
             {
                 CommonUtils.DisplayBoard(Game2);
-
                 WriteBoard(Game1);
                 Message.Clear();
 
@@ -58,6 +59,7 @@ namespace Chess
                 game.Board = game.InitialiseGame();
                 game.Moves.Clear();
                 game.PiecesTaken.Clear();
+                game.StringOfPiecesTaken.Clear();
             }
             else if (move.StartsWith("f"))      //flip the board over
             {
@@ -94,9 +96,22 @@ namespace Chess
 
         private static void ChessMove(ChessGame game, BoardInternal game2, string move, Validation validate)
         {
-            if (!validate.IsWhiteOrBlackToMove(game, move))
+            MoveModel mm = validate.GetMoveCoordsAndPiece(game, move);
+
+            if (mm.srcval == "  ")
             {
-                Message.Append("White or Blacks move! :" + move + " ");
+                Message.Append("ERROR No piece to move from that square! :" + move + " ");
+            }
+            else if (!validate.IsWhiteOrBlackToMove(game, move))
+            {
+                if (game.Moves.Count % 2 == 0)
+                {
+                    Message.Append("ERROR White's move! :" + move + " ");
+                }
+                else
+                {
+                    Message.Append("ERROR Black's move! :" + move + " ");
+                }
             }
             else if (validate.IsPieceMoveValid(game, move) && validate.IsClearPath(game, game2, move) && !validate.DoesMovePutSelfInCheck(move))
             {
@@ -107,7 +122,7 @@ namespace Chess
             }
             else
             {
-                Message.Append("Invalid move :" + move + " ");
+                Message.Append("ERROR Invalid move :" + move + " ");
             }
         }
 

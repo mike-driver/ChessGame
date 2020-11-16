@@ -51,9 +51,9 @@ namespace Chess
             }
             Console.WriteLine("╚══╩══╩══╩══╩══╩══╩══╩══╝");
             if (!game.FLIPPED)
-            { Console.WriteLine(" a  b  c  d  e  f  g  h    Pieces taken: " + game.PiecesTaken); }
+            { Console.WriteLine(" a  b  c  d  e  f  g  h    Pieces taken: " + game.StringOfPiecesTaken); }
             else
-            { Console.WriteLine(" h  g  f  e  d  c  b  a    Pieces taken: " + game.PiecesTaken); }
+            { Console.WriteLine(" h  g  f  e  d  c  b  a    Pieces taken: " + game.StringOfPiecesTaken); }
             Console.WriteLine();
         }
 

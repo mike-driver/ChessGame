@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 using Chess.Common;
 
@@ -9,6 +10,7 @@ namespace Chess
         public string[,] Board = new string[8, 8];
         public List<string> Moves = new List<string>();
         public List<string> PiecesTaken = new List<string>();
+        public StringBuilder StringOfPiecesTaken = new StringBuilder();
         public bool FLIPPED;
         public static GameState GAMESTATE;
 
