@@ -18,7 +18,7 @@ namespace Chess
             ChessGame Game1 = new ChessGame();
 
             BoardInternal Game2 = new BoardInternal();
-
+            //test comment
             while (PLAYING)
             {
                 CommonUtils.DisplayBoard(Game2);
